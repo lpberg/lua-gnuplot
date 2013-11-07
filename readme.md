@@ -2,7 +2,7 @@
 
 ## About
 
-This repo is a fork from the origional repo on bitbucket. The original author is lucashnegri (https://bitbucket.org/lucashnegri/lua-gnuplot)
+This repo is a fork from the original repo on bitbucket. The original author is lucashnegri (https://bitbucket.org/lucashnegri/lua-gnuplot)
 
 lua-gnuplot is a small library for using gnuplot in a Lua program. It works by
 generating a [gnuplot][1] script from a Lua plot definition and calling the
@@ -26,11 +26,3 @@ Lua rock.
 There is no documentation. Read the (rather compact) source code or see
 example.lua.
 
-## Source code and Contact
-
-Repository on [bitbucket][2].
-Contact me at lucashnegri@gmail.com.
-Many things are missing, so patches are more than welcome.
-
-[1]: http://www.gnuplot.info
-[2]: https://bitbucket.org/lucashnegri/lua-gnuplot
