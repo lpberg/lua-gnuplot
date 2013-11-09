@@ -1,7 +1,17 @@
-#! /usr/bin/env lua
+require "AddAppDirectory"
+require "getScriptFilename"
+AddAppDirectory()
 
-local gp = require('gnuplot')
--- gp.bin = '/usr/local/bin/mygnuplot'
+local gp = runfile[[gnuplot.lua]]
+gp.bin = [["C:\Program Files (x86)\gnuplot\bin\gnuplot.exe"]]
+
+local function createFullFilePathForWindows(filename)
+	local filenamefullpath = string.match(getScriptFilename(), "(.-)([^\\]-([^%.]+))$")..filename
+	filenamefullpath = string.gsub(filenamefullpath,"\\","/")
+	return filenamefullpath
+end
+
+local outfile = createFullFilePathForWindows("sample.png")
 
 local g = gp{
     -- all optional, with sane defaults
@@ -46,7 +56,8 @@ local g = gp{
             width = 2,
         },
     }    
-}:plot('output.png')
+}:plot(outfile)
+
 
 -- plot with other terminals
 --g:plot('output.svg')
