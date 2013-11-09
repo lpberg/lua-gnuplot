@@ -46,19 +46,19 @@ local g = gp{
 
         },
         
-        -- gp.func {   -- plot from a Lua function
-            -- function(x)                 -- function to plot
-                -- return 3* math.sin(2*x) + 4
-            -- end,
+        gp.func {   -- plot from a Lua function
+            function(x)                 -- function to plot
+                return 3* math.sin(2*x) + 4
+            end,
             
-            -- range = {-2, 10, 0.01},     -- optional
-            -- width = 3,                  -- optional
-        -- },
+            range = {-2, 10, 0.01},     -- optional
+            width = 3,                  -- optional
+        },
         
-        -- gp.gpfunc { -- plot from a native gnuplot function
-            -- "gamma*sin(1.8*x) + 3",
-            -- width = 2,
-        -- },
+        gp.gpfunc { -- plot from a native gnuplot function
+            "gamma*sin(1.8*x) + 3",
+            width = 2,
+        },
     }    
 }:plot(outfile)
 
