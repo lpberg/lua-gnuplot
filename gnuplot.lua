@@ -27,18 +27,18 @@
 --]]
 
 local gnuplot = {}
-
+local tmpdir = os.getenv("TMP")
 -- ** auxiliary functions **
 local temp_files = {}
 
-local function remove_temp_files()
+function remove_temp_files()
     for _, fname in ipairs(temp_files) do
-        os.remove(fname)
+		os.remove(fname)
     end
 end
 
 local function write_temp_file(content)
-    local name = os.tmpname()
+    local name = tmpdir..os.tmpname()
     local file = io.open(name, 'w')
     file:write(content)
     file:close()
@@ -172,8 +172,10 @@ function gnuplot.do_plot(g, cmd, path)
     local name = write_temp_file( code )
     local opt = ""
     if g._type == "wxt" then opt = '--persist' end
+	-- print(string.format("%s %s %s",  gnuplot.bin, opt, name))
     os.execute( string.format("%s %s %s",  gnuplot.bin, opt, name) )
-    
+	--added following function call to ensure garbage collection on Windows
+    remove_temp_files()
     return g
 end
 
