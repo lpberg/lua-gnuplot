@@ -27,7 +27,11 @@
 --]]
 
 local gnuplot = {}
-local tmpdir = os.getenv("TMP")
+local tmpdir = ""
+--set tmpdir for Windows, leaves it blank for Linux
+if os.getenv("TMP") then
+	tmpdir = os.getenv("TMP")
+end
 -- ** auxiliary functions **
 local temp_files = {}
 
@@ -39,12 +43,11 @@ end
 
 local function write_temp_file(content)
     local name = tmpdir..os.tmpname()
+	name = string.gsub(name,"\\","/")
     local file = io.open(name, 'w')
     file:write(content)
     file:close()
-    
     table.insert(temp_files, name)
-    
     return name
 end
 
